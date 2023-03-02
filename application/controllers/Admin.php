@@ -82,8 +82,58 @@ class Admin extends CI_Controller {
 		$data['dataset'] = $this->Admin_model->getProductDetailsById($id);
 		$data['images'] = $this->Admin_model->getProductImagesById($id);
 
-		print_r($data);die();
-		$this->load->view('admin/edit_product');
+		// print_r($data);die();
+		$this->load->view('admin/edit_product',$data);
+	}
+
+	public function editProductDetailsData($id)
+	{
+		$data = [
+			"name" => $_POST['name'],
+			"price" => $_POST['price'],
+			"discount" => $_POST['discount'],
+			"description" => $_POST['description'],
+			"a_date" => date("Y/m/d"),
+		];
+
+		// upload Cover Image
+		if ($_FILES["c_image"]["error"]==0) {
+			$random1 = substr(number_format(time() * rand(),0,'',''),0,10); 
+			$target_dir = "uploads/";
+			$image = $random1.basename($_FILES["c_image"]["name"]);
+			$target_file = $target_dir . $image;
+			$moved = move_uploaded_file($_FILES["c_image"]["tmp_name"], $target_file);
+
+			$data['cover_image'] = $target_file;
+		}
+
+		$this->Admin_model->editProductDetailsById($id,$data);
+
+		if (isset($_FILES["images"])) {
+			for ($i=0; $i < count($_FILES["images"]['name']) ; $i++) { 
+				if ($_FILES["images"]["tmp_name"][$i]!="") {
+
+			        // upload Image
+					$random1 = substr(number_format(time() * rand(),0,'',''),0,10); 
+					$target_dir = "uploads/";
+					$image = $random1.basename($_FILES["images"]["name"][$i]);
+					$target_file = $target_dir . $image;
+					$moved = move_uploaded_file($_FILES["images"]["tmp_name"][$i], $target_file);
+
+
+					$dataset = [
+						'product_id'=>$id,
+						'image'=>$target_file,
+					];
+
+					$this->Admin_model->addProductsImages($dataset);
+				}
+			}
+			
+		}
+
+		$this->session->set_flashdata('productSuccess', 'Product Updated Successfully!');
+		redirect('admin/editProductDetailsById/'.$id);
 	}
 
 	public function deleteProductDetailsById($id)
@@ -93,6 +143,14 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('productError', 'Product Deleted Successfully!');
 
 		redirect('admin/products');
+	}
+
+	public function deleteProductImageById($id,$product_id)
+	{
+		$this->Admin_model->deleteProductImageById($id);
+		$this->session->set_flashdata('productError', 'Product Image Deleted Successfully!');
+
+		redirect('admin/editProductDetailsById/'.$product_id);
 	}
 
 

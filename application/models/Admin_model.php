@@ -79,6 +79,18 @@ public function getProductImagesById($id)
   return $query->result();
 }
 
+public function deleteProductImageById($id)
+{
+  $this->db->where('id', $id);
+  $this->db->delete('product_images');
+}
+
+public function editProductDetailsById($id,$data)
+{
+  $this->db->where('id', $id);
+  $this->db->update('products', $data);
+}
+
 
 
 
