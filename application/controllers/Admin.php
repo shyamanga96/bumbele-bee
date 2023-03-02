@@ -15,11 +15,16 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function orders()
+	{
+		$this->load->view('admin/orders');
+	}
+
 	
 	public function gallery()
 	{
-		$data['images'] = $this->Admin_model->getGalleryItemsBack();
-		$this->load->view('admin/gallery',$data);
+		// $data['images'] = $this->Admin_model->getGalleryItemsBack();
+		$this->load->view('admin/gallery');
 	}
 
 	public function addGalleryImages()
