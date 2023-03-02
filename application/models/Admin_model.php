@@ -29,33 +29,87 @@ class Admin_model extends CI_Model {
     return $query->result();         
   } 
 
-  public function getGalleryItemsBack()
+  public function addProductDetails($data)
   {
-    $this->db->order_by('id','DESC');
-    $query = $this->db->get('gallery');
+   $this->db->insert('products', $data);
 
-    return $query->result();
-  }
+   return $this->db->insert_id();
+ }
+
+ public function addProductsImages($data)
+ {
+   $this->db->insert('product_images', $data);
+
+   return $this->db->insert_id();
+ }
+
+ public function getProductsBack()
+ {
+  $this->db->order_by('id','DESC');
+  $query = $this->db->get('products');
+
+  return $query->result();
+}
+
+public function deleteProductDetailsById($id)
+{
+  $this->db->where('id', $id);
+  $this->db->delete('products');
+}
+
+public function deleteProductImagesByProductId($id)
+{
+  $this->db->where('product_id', $id);
+  $this->db->delete('product_images');
+}
+
+public function getProductDetailsById($id)
+{
+  $this->db->where('id', $id);
+  $query = $this->db->get('products');
+
+  return $query->row();
+}
+
+public function getProductImagesById($id)
+{
+  $this->db->where('product_id', $id);
+  $query = $this->db->get('product_images');
+
+  return $query->result();
+}
 
 
-  public function addGalleryImagesData($data)
-  {
-    $this->db->insert('gallery', $data);
 
-    return $this->db->insert_id();
-  }
 
-  public function deleteGalleryItemDetailsById($id)
-  {
-    $this->db->where('id', $id);
-    $this->db->delete('gallery');
-  }
 
-  public function passwordResetData($data)
-  {
-    $this->db->where('id', 1);
-    $this->db->update('users', $data);
-  }
+public function getGalleryItemsBack()
+{
+  $this->db->order_by('id','DESC');
+  $query = $this->db->get('gallery');
+
+  return $query->result();
+}
+
+
+public function addGalleryImagesData($data)
+{
+  $this->db->insert('gallery', $data);
+
+  return $this->db->insert_id();
+}
+
+public function deleteGalleryItemDetailsById($id)
+{
+  $this->db->where('id', $id);
+  $this->db->delete('gallery');
+}
+
+public function passwordResetData($data)
+{
+  $this->db->where('id', 1);
+  $this->db->update('users', $data);
+}
 
 
 }

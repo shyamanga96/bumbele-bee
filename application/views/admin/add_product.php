@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Manage Gallery Images</title>
+  <title>Product</title>
   <?php include 'include/navigation.php'; ?> 
   <link rel='shortcut icon' type='image/x-icon' href='<?php echo base_url(); ?>application_res/admin/img/favicon.ico' />
 </head>
@@ -23,7 +23,7 @@
             <div class="row">
               <div class="col-12 col-md-5 col-lg-5">
                 <div class="card">
-                  <form action="<?php echo base_url(); ?>admin/addGalleryImages" method="POST" enctype="multipart/form-data">
+                  <form action="<?php echo base_url(); ?>admin/addProducts" method="POST" enctype="multipart/form-data">
                     <div class="card-header">
                       <h4>Add Product Details</h4>
                     </div>
@@ -39,7 +39,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputPassword4">Discount(%)</label>
-                        <input type="number" class="form-control" id="discount" name="discount" required>
+                        <input type="number" class="form-control" id="discount" name="discount">
                       </div>
                     </div>
                     <div class="form-group">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group">
                       <label>Images</label>
-                      <input type="file" name="images[]" id="images[]" class="form-control" multiple required>
+                      <input type="file" name="images[]" id="images[]" class="form-control" multiple>
                     </div>
 
                   </div>
@@ -78,12 +78,13 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($images as $data) { ?>
+                        <?php foreach ($products as $data) { ?>
                           <tr>
-                            <td class="text-center"><img alt="image" src="<?php echo base_url().$data->image;  ?>" height="80"></td>
-                            <td class="text-center"><?php echo $data->width;  ?></td>
+                            <td class="text-center"><img alt="image" src="<?php echo base_url().$data->cover_image;  ?>" height="80"></td>
+                            <td class="text-center"><?php echo $data->name;  ?></td>
                             <td width="40%" class="text-center">
-                              <a href="<?php echo base_url(); ?>admin/deleteGalleryItemDetailsById/<?php echo $data->id;  ?>" class="btn btn-icon btn-danger" onclick="return deleteItem()"><i class="fas fa-trash-alt"></i></a></td>
+                              <a href="<?php echo base_url(); ?>admin/editProductDetailsById/<?php echo $data->id;  ?>" class="btn btn-primary" target="_blank">Detail</a>&nbsp;&nbsp;
+                              <a href="<?php echo base_url(); ?>admin/deleteProductDetailsById/<?php echo $data->id;  ?>" class="btn btn-icon btn-danger" onclick="return deleteItem()"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                           <?php }?>
                         </tbody>
@@ -98,7 +99,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2019 <div class="bullet"></div> Design & Developed By <a href="https://www.codexivelk.com/">Codexive</a>
+          Copyright &copy; 2021 <div class="bullet"></div> Design & Developed By @shyamanga96
         </div>
         <div class="footer-right">
         </div>
@@ -106,40 +107,6 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <form action="<?php echo base_url(); ?>admin/adminResetPassword" method="post" enctype="multipart/form-data">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Reset Passwod</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">New</label>
-              <div class="col-sm-8">
-                <input type="password" class="form-control" name="new_password" id="myInput2" required>
-                <input type="hidden" name="resetPassId" id="resetPassId">
-                <div class="form-check" style="padding-top: 8px;">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheckRe" onclick="showPass2()">
-                    <label class="custom-control-label" for="customCheckRe">Show Password</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- General JS Scripts -->
   <script src="<?php echo base_url(); ?>application_res/admin/js/app.min.js"></script>
@@ -183,19 +150,19 @@
   }
 </script>
 
-<?php if($this->session->flashdata('gallerySuccess')){ ?>
+<?php if($this->session->flashdata('productSuccess')){ ?>
   <script type="text/javascript">
     iziToast.success({
-      message: '<?php echo $this->session->flashdata('gallerySuccess'); ?>',
+      message: '<?php echo $this->session->flashdata('productSuccess'); ?>',
       position: 'topRight'
     });
   </script>
 <?php } ?>
 
-<?php if($this->session->flashdata('galleryError')){ ?>
+<?php if($this->session->flashdata('productError')){ ?>
   <script type="text/javascript">
     iziToast.error({
-      message: '<?php echo $this->session->flashdata('galleryError'); ?>',
+      message: '<?php echo $this->session->flashdata('productError'); ?>',
       position: 'topRight'
     });
   </script>

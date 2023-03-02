@@ -22,8 +22,83 @@ class Admin extends CI_Controller {
 
 	public function products()
 	{
-		$this->load->view('admin/add_product');
+		$data['products'] = $this->Admin_model->getProductsBack();
+
+		$this->load->view('admin/add_product',$data);
 	}
+
+
+	public function addProducts()
+	{
+		$data = [
+			"name" => $_POST['name'],
+			"price" => $_POST['price'],
+			"discount" => $_POST['discount'],
+			"description" => $_POST['description'],
+			"a_date" => date("Y/m/d"),
+		];
+
+		// upload Cover Image
+		$random1 = substr(number_format(time() * rand(),0,'',''),0,10); 
+		$target_dir = "uploads/";
+		$image = $random1.basename($_FILES["c_image"]["name"]);
+		$target_file = $target_dir . $image;
+		$moved = move_uploaded_file($_FILES["c_image"]["tmp_name"], $target_file);
+
+		$data['cover_image'] = $target_file;
+
+		$product_id = $this->Admin_model->addProductDetails($data);
+
+		if (isset($_FILES["images"])) {
+			for ($i=0; $i < count($_FILES["images"]['name']) ; $i++) { 
+				if ($_FILES["images"]["tmp_name"][$i]!="") {
+
+			        // upload Image
+					$random1 = substr(number_format(time() * rand(),0,'',''),0,10); 
+					$target_dir = "uploads/";
+					$image = $random1.basename($_FILES["images"]["name"][$i]);
+					$target_file = $target_dir . $image;
+					$moved = move_uploaded_file($_FILES["images"]["tmp_name"][$i], $target_file);
+
+
+					$dataset = [
+						'product_id'=>$product_id,
+						'image'=>$target_file,
+					];
+
+					$this->Admin_model->addProductsImages($dataset);
+				}
+			}
+			
+		}
+
+		$this->session->set_flashdata('productSuccess', 'New Product Added Successfully!');
+		redirect('admin/products');
+
+	}
+
+	public function editProductDetailsById($id)
+	{
+		$data['dataset'] = $this->Admin_model->getProductDetailsById($id);
+		$data['images'] = $this->Admin_model->getProductImagesById($id);
+
+		print_r($data);die();
+		$this->load->view('admin/edit_product');
+	}
+
+	public function deleteProductDetailsById($id)
+	{
+		$this->Admin_model->deleteProductDetailsById($id);
+		$this->Admin_model->deleteProductImagesByProductId($id);
+		$this->session->set_flashdata('productError', 'Product Deleted Successfully!');
+
+		redirect('admin/products');
+	}
+
+
+
+
+
 
 	
 	public function gallery()
