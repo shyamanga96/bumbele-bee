@@ -13,4 +13,9 @@ class Pages extends CI_Controller {
 	{
 		$this->load->view('shop');
 	}
+
+	public function productDetails()
+	{
+		$this->load->view('product_details');
+	}
 }
