@@ -8,4 +8,9 @@ class Pages extends CI_Controller {
 	{
 		$this->load->view('index');
 	}
+
+	public function shop()
+	{
+		$this->load->view('shop');
+	}
 }
