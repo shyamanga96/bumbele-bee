@@ -20,6 +20,11 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/orders');
 	}
 
+	public function products()
+	{
+		$this->load->view('admin/add_product');
+	}
+
 	
 	public function gallery()
 	{
