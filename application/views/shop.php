@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Shop</title>
+    <title>Shop</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,10 +17,10 @@
 
 <body class="sticky-header">
 
- <?php include 'include/header.php'; ?>
+   <?php include 'include/header.php'; ?>
 
 
- <main class="main-wrapper">
+   <main class="main-wrapper">
     <!-- Start Shop Area  -->
     <div class="axil-shop-area axil-section-gap bg-color-white">
         <div class="container">

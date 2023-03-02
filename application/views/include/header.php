@@ -23,10 +23,10 @@
                   </a>
                 </div>
                 <ul class="mainmenu">
-                  <li><a href="">Home</a></li>
-                  <li><a href="contact.html">Shop</a></li>
-                  <li><a href="contact.html">About</a></li>
-                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="<?php echo base_url(); ?>">Home</a></li>
+                  <li><a href="<?php echo base_url(); ?>shop">Shop</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
                 </ul>
               </nav>
               <!-- End Mainmanu Nav -->
