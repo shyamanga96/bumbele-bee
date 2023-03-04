@@ -44,25 +44,32 @@
                     <i class="flaticon-person"></i>
                   </a>
                   <div class="my-account-dropdown">
-                    <span class="title">QUICKLINKS</span>
-                    <ul>
+
+                    <?php
+                    $user_data = $this->session->userdata();
+                    if (isset($user_data['email'])) { ?>
+                     <span class="title">QUICKLINKS</span>
+                     <ul>
                       <li>
-                        <a href="my-account.html">My Account</a>
+                        <a href="<?php echo base_url(); ?>customer/account">My Account</a>
                       </li>
                     </ul>
-                    <a href="sign-in.html" class="axil-btn btn-bg-primary text-center">Login</a>
-                    <div class="reg-footer text-center" style="padding-top: 10px;">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
-                  </div>
-                </li>
-                <li class="axil-mobile-toggle">
-                  <button class="menu-btn mobile-nav-toggler">
-                    <i class="flaticon-menu-2"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
+                    <a href="<?php echo base_url(); ?>user/customerLogout" class="axil-btn btn-bg-secondary text-center">Logout</a>
+                  <?php }else{ ?>
+                    <a href="<?php echo base_url(); ?>sign-in" class="axil-btn btn-bg-primary text-center">Login</a>
+                  <?php } ?>
+                  <div class="reg-footer text-center" style="padding-top: 10px;">No account yet? <a href="<?php echo base_url(); ?>sign-up" class="btn-link">REGISTER HERE.</a></div>
+                </div>
+              </li>
+              <li class="axil-mobile-toggle">
+                <button class="menu-btn mobile-nav-toggler">
+                  <i class="flaticon-menu-2"></i>
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <!-- End Mainmenu Area -->
-    </header>
+    </div>
+    <!-- End Mainmenu Area -->
+  </header>
