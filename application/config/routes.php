@@ -55,5 +55,6 @@ $route['admin-login'] = 'user';
 $route['sign-in'] = 'user/customerLogin';
 $route['sign-up'] = 'user/customerRegister';
 $route['cart'] = 'pages/cart';
+$route['checkout'] = 'pages/checkout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

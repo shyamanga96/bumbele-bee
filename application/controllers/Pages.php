@@ -88,4 +88,9 @@ class Pages extends CI_Controller {
 
 		redirect('cart');
 	}
+
+	public function checkout()
+	{
+		$this->load->view('checkout');
+	}
 }
