@@ -8,11 +8,11 @@ class Admin_model extends CI_Model {
   } 
 
   /* SI: FROUNTEND */
-  public function getGalleryItems($start,$limit)
+  public function getProducts($start,$limit)
   {
     $this->db->order_by('id','DESC');
     $this->db->limit($limit, $start);
-    $query = $this->db->get('gallery');
+    $query = $this->db->get('products');
 
     return $query->result();
   }

@@ -25,11 +25,11 @@
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
             <div class="login-brand">
-              <img style="margin-top: 0px !important;" width="150" src="<?php echo base_url(); ?>application_res/images/logo/logo-1.png"><br>
+              <img style="margin-top: 0px !important;" width="150" src="<?php echo base_url(); ?>application_res/images/logo/logo.png"><br>
             </div>
             <div class="card card-primary">
               <div class="card-header">
-                <h4>Blue Ember Group Admin Login</h4>
+                <h4>Admin Login</h4>
               </div>
               <div class="card-body">
                 <form method="POST" action="<?php echo base_url(); ?>user/logincheck" class="needs-validation" novalidate="">

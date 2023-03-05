@@ -15,7 +15,7 @@ class User extends CI_Controller {
    $user_data = $this->session->userdata();
 
    if (isset($user_data['username'])) {
-    redirect('admin/gallery');
+    redirect('admin/orders');
 
   }else{
 
@@ -28,7 +28,7 @@ public function logincheck(){
   $user_data = $this->session->userdata();
 
   if (isset($user_data['username'])) {
-    redirect('admin/gallery');
+    redirect('admin/orders');
 
   }else{
     $username=$_POST['userName']; 
@@ -45,7 +45,7 @@ public function logincheck(){
      $this->session->set_flashdata('welcome_back', ' '.$username);
 
      $this->session->set_userdata($user_data);  
-     redirect('admin/gallery');    
+     redirect('admin/orders');    
 
    }else{       
      $this->session->set_flashdata('login_error', 'Invalid Username or Password!');
