@@ -27,4 +27,48 @@ class Pages extends CI_Controller {
 		$this->load->view('product_details');
 
 	}
+
+	public function addToCart($id,$url='')
+	{
+		$baseUrl = base_url();
+
+		$productDetails = $this->Admin_model->getProductDetailsById($id);
+
+
+
+		$exists = false;
+		$rowid = '';
+		$qty = 1;
+		foreach ($this->cart->contents() as $item) {
+			if($item['id'] == $id)
+			{
+				$exists = true;
+				$rowid = $item['rowid'];
+				$qty = $item['qty'];
+			} 
+		}
+
+		if($exists)
+		{
+			//item already in the cart
+			$data = array(
+				'rowid' => $rowid,
+				'qty'   => 1 +$qty
+			);
+
+			$this->cart->update($data);      
+		} else {
+			$data = array(
+				'id'      => $productDetails->id,
+				'price'   => $productDetails->price-($productDetails->price*($productDetails->discount/100)),
+				'qty'   => 1,
+				'name'    => $productDetails->name,
+				'image'    => $productDetails->cover_image,
+			);
+
+			$this->cart->insert($data);
+		}
+
+		redirect($url);
+	}
 }

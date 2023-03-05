@@ -94,7 +94,7 @@
                 <div class="explore-product-activation slick-layout-wrapper slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
                     <div class="slick-single-layout">
                         <div class="row row--15">
-                         <?php foreach ($products as $key => $product) { ?>
+                           <?php foreach ($products as $key => $product) { ?>
                             <div class="col-xl-3 col-lg-4 col-sm-6">
                                 <div class="axil-product product-style-one has-color-pick mt--40">
                                     <div class="thumbnail">
@@ -108,7 +108,7 @@
                                         <?php } ?>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                                <li class="select-option"><a href="<?php echo base_url(); ?>pages/addToCart/<?php echo $product->id; ?>">Add to Cart</a></li>
                                             </ul>
                                         </div>
                                     </div>

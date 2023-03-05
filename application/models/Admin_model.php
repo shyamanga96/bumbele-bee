@@ -95,6 +95,16 @@ public function editProductDetailsById($id,$data)
 
 
 
+
+
+
+
+
+
+
+
+
+
 public function getGalleryItemsBack()
 {
   $this->db->order_by('id','DESC');

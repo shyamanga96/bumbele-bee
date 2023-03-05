@@ -17,10 +17,10 @@
 
 <body class="sticky-header">
 
-   <?php include 'include/header.php'; ?>
+ <?php include 'include/header.php'; ?>
 
 
-   <main class="main-wrapper">
+ <main class="main-wrapper">
     <!-- Start Shop Area  -->
     <div class="axil-shop-area axil-section-gap bg-color-white">
         <div class="container">
@@ -61,7 +61,7 @@
                                 <?php } ?>
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
-                                        <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                        <li class="select-option"><a href="<?php echo base_url(); ?>pages/addToCart/<?php echo $product->id; ?>/shop">Add to Cart</a></li>
                                     </ul>
                                 </div>
                             </div>
