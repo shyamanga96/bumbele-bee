@@ -6,6 +6,7 @@ class Pages extends CI_Controller {
 	function __construct() {   
 		parent::__construct();
 		$this->load->model('Admin_model');
+		$this->load->model('Customer_model');
 
 	}
 
@@ -91,6 +92,22 @@ class Pages extends CI_Controller {
 
 	public function checkout()
 	{
-		$this->load->view('checkout');
+		$user_data = $this->session->userdata();
+
+		$data['nodata']= 0;
+		$data['age'] = 0;
+
+		if (isset($user_data['customerId'])) {
+			$data['customer'] = $this->Customer_model->getCustomerDetailsById($user_data['customerId']);
+
+			$from = new DateTime($data['customer']->birthday);
+			$to   = new DateTime('today');
+
+			if ($from->diff($to)->y >=18) {
+				$data['age'] = 1;
+			}
+		}
+
+		$this->load->view('checkout',$data);
 	}
 }

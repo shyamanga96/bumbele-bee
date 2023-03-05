@@ -39,7 +39,7 @@ public function logincheck(){
 
     if(count($user) > 0){    
      $user_data = array(
-      'username' => $username
+      'username' => $username,
     );
 
      $this->session->set_flashdata('welcome_back', ' '.$username);
@@ -117,7 +117,10 @@ public function customerLoginCheck()
 
   if(count($user) > 0){    
    $user_data = array(
-    'email' => $email
+    'email' => $email,
+    'customerId'=>$user[0]->id,
+    'username'=>$user[0]->f_name
+
   );
 
    $this->session->set_flashdata('welcome_back', ' '.$email);

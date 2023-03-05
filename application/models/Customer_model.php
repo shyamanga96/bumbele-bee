@@ -25,6 +25,14 @@ class Customer_model extends CI_Model {
    return $this->db->insert_id();
  }
 
+ public function getCustomerDetailsById($id)
+ {
+   $this->db->where('id', $id);
+   $query = $this->db->get('customers');
+
+   return $query->row();
+ }
+
 
 
 
