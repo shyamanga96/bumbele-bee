@@ -28,6 +28,11 @@ class Pages extends CI_Controller {
 
 	}
 
+	public function cart()
+	{
+		$this->load->view('cart');
+	}
+
 	public function addToCart($id,$url='')
 	{
 		$baseUrl = base_url();
@@ -70,5 +75,17 @@ class Pages extends CI_Controller {
 		}
 
 		redirect($url);
+	}
+
+	public function deleteItemFromCart($rowid)
+	{
+		$data = array(
+			'rowid' => $rowid,
+			'qty'   => 0
+		);
+
+		$this->cart->update($data);
+
+		redirect('cart');
 	}
 }

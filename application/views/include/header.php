@@ -35,7 +35,7 @@
               <ul class="action-list">
                 <li class="shopping-cart">
                   <a href="#" class="cart-dropdown-btn">
-                    <span class="cart-count">3</span>
+                    <span class="cart-count"><?php echo count($this->cart->contents()); ?></span>
                     <i class="flaticon-shopping-cart"></i>
                   </a>
                 </li>

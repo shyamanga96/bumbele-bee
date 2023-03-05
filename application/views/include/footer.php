@@ -45,90 +45,42 @@
       <h2 class="header-title">Cart review</h2>
       <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
     </div>
-    <div class="cart-body">
-      <ul class="cart-item-list">
-        <li class="cart-item">
-          <div class="item-img">
-            <a href="single-product.html"><img src="<?php echo base_url(); ?>application_res/images/product/electric/product-01.png" alt="Commodo Blown Lamp"></a>
-            <button class="close-btn"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="item-content">
-            <div class="product-rating">
-              <span class="icon">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </span>
-              <span class="rating-number">(64)</span>
+
+    <?php if (count($this->cart->contents())>0) { ?>
+
+      <div class="cart-body">
+        <ul class="cart-item-list">
+         <?php foreach ($this->cart->contents() as $item) { ?>
+          <li class="cart-item">
+            <div class="item-img">
+              <a href="single-product.html"><img src="<?php echo base_url().$item['image']; ?>" alt="Product Image"></a>
+              <a href="<?php echo base_url(); ?>pages/deleteItemFromCart/<?php echo $item['rowid']; ?>"><button class="close-btn"><i class="fas fa-times"></i></button></a>
             </div>
-            <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
-            <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
-            <div class="pro-qty item-quantity">
-              <input type="number" class="quantity-input" value="15">
+            <div class="item-content">
+              <h3 class="item-title"><a href="single-product-3.html"><?php echo $item['name']; ?></a></h3>
+              <div class="item-price"><span class="currency-symbol">Rs.</span><?php echo $item['price']; ?></div>
+              <div class="item-quantity">
+                <span style="font-size: 19px;color: #292930;"><strong><?php echo $item['qty']; ?></strong></span>
+              </div>
             </div>
-          </div>
-        </li>
-        <li class="cart-item">
-          <div class="item-img">
-            <a href="single-product-2.html"><img src="<?php echo base_url(); ?>application_res/images/product/electric/product-02.png" alt="Commodo Blown Lamp"></a>
-            <button class="close-btn"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="item-content">
-            <div class="product-rating">
-              <span class="icon">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </span>
-              <span class="rating-number">(4)</span>
-            </div>
-            <h3 class="item-title"><a href="single-product-2.html">Gradient Light Keyboard</a></h3>
-            <div class="item-price"><span class="currency-symbol">$</span>255.00</div>
-            <div class="pro-qty item-quantity">
-              <input type="number" class="quantity-input" value="5">
-            </div>
-          </div>
-        </li>
-        <li class="cart-item">
-          <div class="item-img">
-            <a href="single-product-3.html"><img src="<?php echo base_url(); ?>application_res/images/product/electric/product-03.png" alt="Commodo Blown Lamp"></a>
-            <button class="close-btn"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="item-content">
-            <div class="product-rating">
-              <span class="icon">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </span>
-              <span class="rating-number">(6)</span>
-            </div>
-            <h3 class="item-title"><a href="single-product.html">HD CC Camera</a></h3>
-            <div class="item-price"><span class="currency-symbol">$</span>200.00</div>
-            <div class="pro-qty item-quantity">
-              <input type="number" class="quantity-input" value="100">
-            </div>
-          </div>
-        </li>
+          </li>
+        <?php } ?>
       </ul>
     </div>
     <div class="cart-footer">
       <h3 class="cart-subtotal">
         <span class="subtotal-title">Subtotal:</span>
-        <span class="subtotal-amount">$610.00</span>
+        <span class="subtotal-amount">Rs.<?php echo number_format($this->cart->total()); ?></span>
       </h3>
       <div class="group-btn">
-        <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
-        <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+        <a href="<?php echo base_url(); ?>cart" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
+        <a href="<?php echo base_url(); ?>checkout" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
       </div>
     </div>
-  </div>
+  <?php }else{ ?>
+    <h4 style="margin-top:30px">Your Cart is Empty</h4>
+  <?php } ?>
+</div>
 </div>
 
 <div class="closeMask"></div>
