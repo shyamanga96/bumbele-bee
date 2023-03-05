@@ -110,4 +110,74 @@ class Pages extends CI_Controller {
 
 		$this->load->view('checkout',$data);
 	}
+
+	public function placeOrder()
+	{
+		// print_r($this->cart->contents());die();
+		$user_data = $this->session->userdata();
+
+		$cus_data = [
+			'f_name'=>$_POST['f_name'],
+			'l_name'=>$_POST['l_name'],
+			'contact_nu'=>$_POST['contact_nu'],
+			'birthday'=>$_POST['birthday'],
+			'country'=>$_POST['country'],
+			'address1'=>$_POST['address1'],
+			'address2'=>$_POST['address2'],
+			'city'=>$_POST['city']
+		];
+
+		$this->Customer_model->updateCustomerDetailsById($user_data['customerId'],$cus_data);
+
+		$order_data=[
+			'customer_id'=>$user_data['customerId'],
+			'contact_nu'=>$_POST['contact_nu'],
+			'country'=>$_POST['country'],
+			'address1'=>$_POST['address1'],
+			'address2'=>$_POST['address2'],
+			'city'=>$_POST['city'],
+			'notes'=>$_POST['notes'],
+			'type'=>'COD',
+			'total'=>$this->cart->total(),
+			'd_date'=>date_format(new DateTime('today'),"Y-m-d")
+		];
+
+		if ($_POST['payment']=="installment") {
+			$order_data['type']="installment";
+
+			$time = strtotime(date_format(new DateTime('today'),"Y-m-d"));
+			$final = date("Y-m-d", strtotime("+1 month", $time));
+
+			$order_data['next_pay_date']=$final;
+			$order_data['installment']=$this->cart->total()/3;
+
+		}
+
+		
+
+		$order_id = $this->Customer_model->addOrderData($order_data);
+
+		foreach ($this->cart->contents() as $item) {
+
+			$order_item_data = [
+
+				'order_id'=>$order_id,
+				'item_id'=>$item['id'],
+				'qty'=>$item['qty'],
+				'price'=>$item['price']
+			];
+
+			$this->Customer_model->addOrderItemsByOrderId($order_item_data);
+
+			$data = array(
+				'rowid' => $item['rowid'],
+				'qty'   => 0
+			);
+
+			$this->cart->update($data);
+		}
+		$this->session->set_flashdata('order_placed', '#'.$order_id.' Order Placed Successfully! Place check it on your "Orders" tab.');
+		redirect('customer/account');
+
+	}
 }

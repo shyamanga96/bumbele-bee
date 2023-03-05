@@ -21,7 +21,7 @@
     <!-- Start Checkout Area  -->
     <div class="axil-checkout-area axil-section-gap">
         <div class="container">
-            <form method="POST" action="<?php echo base_url(); ?>user/customerLoginCheck" >
+            <form method="POST" action="<?php echo base_url(); ?>pages/placeOrder" >
                 <div class="row">
                     <div class="col-lg-6">
                         <?php if (!isset($customer)) { ?>
@@ -33,15 +33,15 @@
                                         <p>If you didn't Logged in, Please Log in first.</p>
                                         <div class="signin-box">
                                             <div class="form-group mb--0">
-                                               <a href="<?php echo base_url(); ?>sign-in"><button type="button" class="axil-btn btn-bg-primary submit-btn">Sign In</button></a> 
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       <?php } ?>
+                                             <a href="<?php echo base_url(); ?>sign-in"><button type="button" class="axil-btn btn-bg-primary submit-btn">Sign In</button></a> 
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     <?php } ?>
 
-                       <div class="axil-checkout-billing">
+                     <div class="axil-checkout-billing">
                         <h4 class="title mb--40">Billing details</h4>
                         <div class="row">
                             <div class="col-lg-6">
@@ -73,8 +73,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                   <label>Country<span>*</span></label>
-                                   <select id="country" name="country" required>
+                                 <label>Country<span>*</span></label>
+                                 <select id="country" name="country" required>
                                     <option value="Sri Lanka" <?php if (isset($customer)&& $customer->country == "Sri Lanka") {
                                         echo "selected";
                                     }  ?>>Sri Lanka</option>
@@ -132,9 +132,7 @@
                     <?php } ?>
                     <div class="form-group">
                         <label>Other Notes (optional)</label>
-                        <textarea id="notes" name="notes" rows="2" placeholder="Notes about your order, e.g. speacial notes for delivery."><?php if (isset($customer)) {
-                            echo $customer->notes;
-                        }  ?></textarea>
+                        <textarea id="notes" name="notes" rows="2" placeholder="Notes about your order, e.g. speacial notes for delivery."></textarea>
                     </div>
                 </div>
             </div>
@@ -150,7 +148,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             <?php foreach ($this->cart->contents() as $item) { ?>
+                               <?php foreach ($this->cart->contents() as $item) { ?>
                                 <tr class="order-product">
                                     <td><?php echo $item['name']; ?> <span class="quantity"><strong>x <?php echo $item['qty']; ?></strong></span></td>
                                     <td>Rs.<?php echo $item['qty']*$item['price']; ?></td>
@@ -174,14 +172,14 @@
                 <div class="order-payment-method">
                     <div class="single-payment">
                         <div class="input-group">
-                            <input type="radio" id="radio5" name="payment" checked>
+                            <input type="radio" id="radio5" name="payment" value="COD" checked>
                             <label for="radio5">Cash on delivery</label>
                         </div>
                         <p>Pay with cash upon delivery.</p>
                     </div>
                     <div class="single-payment">
                         <div class="input-group">
-                            <input type="radio" id="radio4" name="payment" <?php if ($age === 0) {
+                            <input type="radio" id="radio4" name="payment" value="installment" <?php if ($age === 0) {
                                 echo "disabled";
                             }  ?>>
                             <label for="radio4" style="<?php if ($age === 0) {

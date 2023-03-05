@@ -33,6 +33,26 @@ class Customer_model extends CI_Model {
    return $query->row();
  }
 
+ public function updateCustomerDetailsById($id,$data)
+ {
+   $this->db->where('id', $id);
+   $this->db->update('customers', $data);
+ }
+
+ public function addOrderData($data)
+ {
+  $this->db->insert('orders', $data);
+
+  return $this->db->insert_id();
+}
+
+public function addOrderItemsByOrderId($data)
+{
+ $this->db->insert('order_items', $data);
+
+ return $this->db->insert_id();
+}
+
 
 
 

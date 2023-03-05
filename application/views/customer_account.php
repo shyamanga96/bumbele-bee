@@ -13,8 +13,8 @@
 
 
     <body class="sticky-header">
-     <?php include 'include/header.php'; ?>
-     <main class="main-wrapper">
+       <?php include 'include/header.php'; ?>
+       <main class="main-wrapper">
         <!-- Start My Account Area  -->
         <div class="axil-dashboard-area axil-section-gap">
             <div class="container">
@@ -34,117 +34,120 @@
                         </div>
                         <div class="col-xl-9 col-md-8">
                             <div class="tab-content">
-                                <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
-                                    <div class="axil-dashboard-overview">
-                                        <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a href="<?php echo base_url(); ?>user/customerLogout">Log Out</a>)</div>
-                                        <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
-                                    </div>
+                             <?php if($this->session->flashdata('order_placed')){ ?>
+                                <div class="alert alert-success" role="alert">
+                                  <?php echo $this->session->flashdata('order_placed'); ?>
+                              </div>
+                          <?php } ?>
+                          <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
+                            <div class="axil-dashboard-overview">
+                                <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a href="<?php echo base_url(); ?>user/customerLogout">Log Out</a>)</div>
+                                <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-orders" role="tabpanel">
+                            <div class="axil-dashboard-order">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Order</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Total</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">#6523</th>
+                                                <td>September 10, 2020</td>
+                                                <td>Processing</td>
+                                                <td>$326.63 for 3 items</td>
+                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">#6523</th>
+                                                <td>September 10, 2020</td>
+                                                <td>On Hold</td>
+                                                <td>$326.63 for 3 items</td>
+                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">#6523</th>
+                                                <td>September 10, 2020</td>
+                                                <td>Processing</td>
+                                                <td>$326.63 for 3 items</td>
+                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">#6523</th>
+                                                <td>September 10, 2020</td>
+                                                <td>Processing</td>
+                                                <td>$326.63 for 3 items</td>
+                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">#6523</th>
+                                                <td>September 10, 2020</td>
+                                                <td>Processing</td>
+                                                <td>$326.63 for 3 items</td>
+                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="tab-pane fade" id="nav-orders" role="tabpanel">
-                                    <div class="axil-dashboard-order">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Order</th>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Total</th>
-                                                        <th scope="col">Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>On Hold</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-account" role="tabpanel">
-                                    <div class="col-lg-9">
-                                        <div class="axil-dashboard-account">
-                                            <form class="account-details-form">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>First Name</label>
-                                                            <input type="text" class="form-control" value="Annie">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Last Name</label>
-                                                            <input type="text" class="form-control" value="Mario">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group mb--40">
-                                                            <label>Country/ Region</label>
-                                                            <select class="select2">
-                                                                <option value="1">United Kindom (UK)</option>
-                                                                <option value="1">United States (USA)</option>
-                                                                <option value="1">United Arab Emirates (UAE)</option>
-                                                                <option value="1">Australia</option>
-                                                            </select>
-                                                            <p class="b3 mt--10">This will be how your name will be displayed in the account section and in reviews</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <h5 class="title">Password Change</h5>
-                                                        <div class="form-group">
-                                                            <label>Password</label>
-                                                            <input type="password" class="form-control" value="123456789101112131415">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>New Password</label>
-                                                            <input type="password" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Confirm New Password</label>
-                                                            <input type="password" class="form-control">
-                                                        </div>
-                                                        <div class="form-group mb--0">
-                                                            <input type="submit" class="axil-btn" value="Save Changes">
-                                                        </div>
-                                                    </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-account" role="tabpanel">
+                            <div class="col-lg-9">
+                                <div class="axil-dashboard-account">
+                                    <form class="account-details-form">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>First Name</label>
+                                                    <input type="text" class="form-control" value="Annie">
                                                 </div>
-                                            </form>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Last Name</label>
+                                                    <input type="text" class="form-control" value="Mario">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group mb--40">
+                                                    <label>Country/ Region</label>
+                                                    <select class="select2">
+                                                        <option value="1">United Kindom (UK)</option>
+                                                        <option value="1">United States (USA)</option>
+                                                        <option value="1">United Arab Emirates (UAE)</option>
+                                                        <option value="1">Australia</option>
+                                                    </select>
+                                                    <p class="b3 mt--10">This will be how your name will be displayed in the account section and in reviews</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="title">Password Change</h5>
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" class="form-control" value="123456789101112131415">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>New Password</label>
+                                                    <input type="password" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Confirm New Password</label>
+                                                    <input type="password" class="form-control">
+                                                </div>
+                                                <div class="form-group mb--0">
+                                                    <input type="submit" class="axil-btn" value="Save Changes">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -152,29 +155,31 @@
                 </div>
             </div>
         </div>
-        <!-- End My Account Area  -->
+    </div>
+</div>
+<!-- End My Account Area  -->
 
-        <!-- Start Axil Newsletter Area  -->
-        <div class="axil-newsletter-area axil-section-gap pt--0">
-            <div class="container">
-                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                    <div class="newsletter-content">
-                        <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
-                        <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-                        <div class="input-group newsletter-form">
-                            <div class="position-relative newsletter-inner mb--15">
-                                <input placeholder="example@gmail.com" type="text">
-                            </div>
-                            <button type="submit" class="axil-btn mb--15">Subscribe</button>
-                        </div>
+<!-- Start Axil Newsletter Area  -->
+<div class="axil-newsletter-area axil-section-gap pt--0">
+    <div class="container">
+        <div class="etrade-newsletter-wrapper bg_image bg_image--5">
+            <div class="newsletter-content">
+                <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
+                <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
+                <div class="input-group newsletter-form">
+                    <div class="position-relative newsletter-inner mb--15">
+                        <input placeholder="example@gmail.com" type="text">
                     </div>
+                    <button type="submit" class="axil-btn mb--15">Subscribe</button>
                 </div>
             </div>
-            <!-- End .container -->
         </div>
-        <!-- End Axil Newsletter Area  -->
-    </main>
-    <?php include 'include/footer.php'; ?>
+    </div>
+    <!-- End .container -->
+</div>
+<!-- End Axil Newsletter Area  -->
+</main>
+<?php include 'include/footer.php'; ?>
 
 
     <!-- JS
