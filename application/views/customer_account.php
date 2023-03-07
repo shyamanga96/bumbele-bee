@@ -39,123 +39,167 @@
                                   <?php echo $this->session->flashdata('order_placed'); ?>
                               </div>
                           <?php } ?>
-                          <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
-                            <div class="axil-dashboard-overview">
-                                <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a href="<?php echo base_url(); ?>user/customerLogout">Log Out</a>)</div>
-                                <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+
+                          <?php if($this->session->flashdata('user_update')){ ?>
+                            <div class="alert alert-success" role="alert">
+                              <?php echo $this->session->flashdata('user_update'); ?>
+                          </div>
+                      <?php } ?>
+
+
+                      <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
+                        <div class="axil-dashboard-overview">
+                            <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a href="<?php echo base_url(); ?>user/customerLogout">Log Out</a>)</div>
+                            <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-orders" role="tabpanel">
+                        <div class="axil-dashboard-order">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Order</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($orders as $key => $order) { ?>
+                                            <tr>
+                                                <th scope="row">#<?php echo $order->id ?></th>
+                                                <td><?php echo date_format(new DateTime('today'),"Y-m-d") ?></td>
+                                                <td><?php echo $order->type ?></td>
+                                                <td>Rs.<?php echo number_format($order->total) ?></td>
+                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-orders" role="tabpanel">
-                            <div class="axil-dashboard-order">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Order</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Total</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">#6523</th>
-                                                <td>September 10, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$326.63 for 3 items</td>
-                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#6523</th>
-                                                <td>September 10, 2020</td>
-                                                <td>On Hold</td>
-                                                <td>$326.63 for 3 items</td>
-                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#6523</th>
-                                                <td>September 10, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$326.63 for 3 items</td>
-                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#6523</th>
-                                                <td>September 10, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$326.63 for 3 items</td>
-                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#6523</th>
-                                                <td>September 10, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$326.63 for 3 items</td>
-                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-account" role="tabpanel">
-                            <div class="col-lg-9">
-                                <div class="axil-dashboard-account">
-                                    <form class="account-details-form">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" class="form-control" value="Annie">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" class="form-control" value="Mario">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group mb--40">
-                                                    <label>Country/ Region</label>
-                                                    <select class="select2">
-                                                        <option value="1">United Kindom (UK)</option>
-                                                        <option value="1">United States (USA)</option>
-                                                        <option value="1">United Arab Emirates (UAE)</option>
-                                                        <option value="1">Australia</option>
-                                                    </select>
-                                                    <p class="b3 mt--10">This will be how your name will be displayed in the account section and in reviews</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <h5 class="title">Password Change</h5>
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" class="form-control" value="123456789101112131415">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>New Password</label>
-                                                    <input type="password" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Confirm New Password</label>
-                                                    <input type="password" class="form-control">
-                                                </div>
-                                                <div class="form-group mb--0">
-                                                    <input type="submit" class="axil-btn" value="Save Changes">
-                                                </div>
-                                            </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-account" role="tabpanel">
+                        <div class="col-lg-9">
+                            <div class="axil-dashboard-account">
+                                <form class="account-details-form" method="POST" action="<?php echo base_url(); ?>customer/accountDataUpdateById">
+                                  <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>First Name <span>*</span></label>
+                                            <input type="text" id="f_name" name="f_name" required value="<?php if (isset($customer)) {
+                                                echo $customer->f_name;
+                                            }  ?>">
                                         </div>
-                                    </form>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Last Name <span>*</span></label>
+                                            <input type="text" id="l_name" name="l_name" required value="<?php if (isset($customer)) {
+                                                echo $customer->l_name;
+                                            }  ?>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Date of Birth<span>*</span></label>
+                                            <input type="date" id="birthday" name="birthday" required value="<?php if (isset($customer)) {
+                                                echo $customer->birthday;
+                                            }  ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                         <label>Country<span>*</span></label>
+                                         <select id="country" name="country" required>
+                                            <option value="Sri Lanka" <?php if (isset($customer)&& $customer->country == "Sri Lanka") {
+                                                echo "selected";
+                                            }  ?>>Sri Lanka</option>
+                                            <option value="England" <?php if (isset($customer)&& $customer->country == "England") {
+                                                echo "selected";
+                                            }  ?>>England</option>
+                                            <option value="New Zealand" <?php if (isset($customer)&& $customer->country == "New Zealand") {
+                                                echo "selected";
+                                            }  ?>>New Zealand</option>
+                                            <option value="Switzerland" <?php if (isset($customer)&& $customer->country == "Switzerland") {
+                                                echo "selected";
+                                            }  ?>>Switzerland</option>
+                                            <option value="United Kindom (UK)" <?php if (isset($customer)&& $customer->country == "United Kindom (UK)") {
+                                                echo "selected";
+                                            }  ?>>United Kindom (UK)</option>
+                                            <option value="United States (USA)" <?php if (isset($customer)&& $customer->country == "United States (USA)") {
+                                                echo "selected";
+                                            }  ?>>United States (USA)</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label>Street Address <span>*</span></label>
+                                <input type="text" id="address1" name="address1" class="mb--15" placeholder="House number and street name" required value="<?php if (isset($customer)) {
+                                    echo $customer->address1;
+                                }  ?>">
+                                <input type="text" id="address2" name="address2" placeholder="Apartment, suite, unit, etc. (optonal)" required value="<?php if (isset($customer)) {
+                                    echo $customer->address2;
+                                }  ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Town/ City <span>*</span></label>
+                                <input type="text" id="city" name="city" required value="<?php if (isset($customer)) {
+                                    echo $customer->city;
+                                }  ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone <span>*</span></label>
+                                <input type="tel" id="contact_nu" name="contact_nu" required value="<?php if (isset($customer)) {
+                                    echo $customer->contact_nu;
+                                }  ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address <span>*</span></label>
+                                <input type="email" id="email" name="email" required value="<?php if (isset($customer)) {
+                                    echo $customer->email;
+                                }  ?>">
+                            </div>
+                            <div class="form-group mb-10">
+                                <input type="submit" class="axil-btn" value="Update Data">
+                            </div>
+
+                        </form>
+                   <!--      <div class="row">
+                            <div class="col-12">
+                                <h5 class="title">Password Change</h5>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" value="123456789101112131415">
+                                </div>
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm New Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="form-group mb--0">
+                                    <input type="submit" class="axil-btn" value="Save Changes">
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 <!-- End My Account Area  -->
 

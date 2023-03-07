@@ -53,6 +53,15 @@ public function addOrderItemsByOrderId($data)
  return $this->db->insert_id();
 }
 
+public function getOrdersByCustomerId($id)
+{
+  $this->db->order_by('id','DESC');
+  $this->db->where('customer_id', $id);
+  $query = $this->db->get('orders');
+
+  return $query->result();
+}
+
 
 
 
