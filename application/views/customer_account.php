@@ -13,8 +13,8 @@
 
 
     <body class="sticky-header">
-       <?php include 'include/header.php'; ?>
-       <main class="main-wrapper">
+     <?php include 'include/header.php'; ?>
+     <main class="main-wrapper">
         <!-- Start My Account Area  -->
         <div class="axil-dashboard-area axil-section-gap">
             <div class="container">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-xl-9 col-md-8">
                             <div class="tab-content">
-                             <?php if($this->session->flashdata('order_placed')){ ?>
+                               <?php if($this->session->flashdata('order_placed')){ ?>
                                 <div class="alert alert-success" role="alert">
                                   <?php echo $this->session->flashdata('order_placed'); ?>
                               </div>
@@ -70,7 +70,7 @@
                                         <?php foreach ($orders as $key => $order) { ?>
                                             <tr>
                                                 <th scope="row">#<?php echo $order->id ?></th>
-                                                <td><?php echo date_format(new DateTime('today'),"Y-m-d") ?></td>
+                                                <td><?php echo date_format(date_create($order->d_date),"Y-m-d") ?></td>
                                                 <td><?php echo $order->type ?></td>
                                                 <td>Rs.<?php echo number_format($order->total) ?></td>
                                                 <td><a href="#" class="axil-btn view-btn">View</a></td>
@@ -116,8 +116,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                         <label>Country<span>*</span></label>
-                                         <select id="country" name="country" required>
+                                           <label>Country<span>*</span></label>
+                                           <select id="country" name="country" required>
                                             <option value="Sri Lanka" <?php if (isset($customer)&& $customer->country == "Sri Lanka") {
                                                 echo "selected";
                                             }  ?>>Sri Lanka</option>

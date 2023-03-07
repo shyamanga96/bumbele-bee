@@ -85,27 +85,26 @@
                         <table class="table table-striped" id="all_v">
                           <thead>
                             <tr>
-                              <th class="text-center">Invoce Nu</th>
-                              <th class="text-center">Member Id</th>
-                              <!-- <th class="text-center">Contact</th> -->
-                              <th class="text-center">Date</th>
+                              <th class="text-center">#</th>
+                              <th class="text-center">Customer Name</th>
+                              <th class="text-center">Contact</th>
                               <th class="text-center">Total</th>
+                              <th class="text-center">Date</th>
                               <th class="text-center" width="13%">Action</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($dataset as $data) { ?>
+                            <?php foreach ($orders as $order) { ?>
                               <tr>
-                                <td><?php echo $data->invoice_id;  ?></td>
-                                <td>DA-<?php echo $data->member_id;  ?></td>
-                                <!-- <td><?php echo $data->c_contact;  ?></td> -->
-                                <td><?php echo $data->i_date;  ?></td>
-                                <td><?php echo $data->net_total;  ?></td>
+                                <td class="text-center">#<?php echo $order->id;  ?></td>
+                                <td><?php echo $order->customer->f_name;  ?> <?php echo $order->customer->l_name;  ?></td>
+                                <td><?php echo $order->customer->contact_nu;  ?></td>
+                                <td>Rs.<?php echo number_format($order->total,2);  ?></td>
+                                <td><?php echo date_format(date_create($order->d_date),"Y-m-d");  ?></td>
                                 <td style="padding-left: 1.5%;"><a href="#" class="btn btn-primary" target="_blank">Detail</a>&nbsp;&nbsp;
-                                  <?php $type = $this->session->userdata('type');
-                                  if ($type == "admin") {?>
-                                    <a href="#" class="btn btn-icon btn-danger" onclick="return deleteItem()"><i class="fas fa-trash-alt"></i></a>
-                                  <?php }?>
+
+                                  <a href="#" class="btn btn-icon btn-danger" onclick="return deleteItem()"><i class="fas fa-trash-alt"></i></a>
+
                                 </td>
 
                               </tr>
@@ -170,7 +169,7 @@
 <script type="text/javascript">
   $('#all_v').DataTable({
     "columnDefs": [
-      { "sortable": false, "targets": [0, 1,2,3,4,5,6] }
+      { "sortable": false, "targets": [0, 1,2,3,4,5] }
       ]
   });
 </script>

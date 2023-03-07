@@ -6,6 +6,7 @@ class Admin extends CI_Controller {
 	function __construct() {   
 		parent::__construct();
 		$this->load->model('Admin_model');
+		$this->load->model('Customer_model');
 
 		$user_data = $this->session->userdata();
 
@@ -17,7 +18,14 @@ class Admin extends CI_Controller {
 
 	public function orders()
 	{
-		$this->load->view('admin/orders');
+		$orders = $this->Admin_model->getAllOrders();
+
+		foreach ($orders as $key => $order) {
+			$order->customer = $this->Customer_model->getCustomerDetailsById($order->customer_id);
+		}
+
+		$data['orders'] = $orders;
+		$this->load->view('admin/orders',$data);
 	}
 
 	public function products()

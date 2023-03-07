@@ -91,11 +91,13 @@ public function editProductDetailsById($id,$data)
   $this->db->update('products', $data);
 }
 
+public function getAllOrders()
+{
+  $this->db->order_by('id','DESC');
+  $query = $this->db->get('orders');
 
-
-
-
-
+  return $query->result();
+}
 
 
 
