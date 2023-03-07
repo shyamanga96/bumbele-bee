@@ -31,7 +31,7 @@
                                             <span class="subtitle"><i class="fal fa-watch"></i> Smartwatch</span>
                                             <h1 class="title">Bloosom Smat Watch</h1>
                                             <div class="shop-btn">
-                                                <a href="shop.html" class="axil-btn">Shop Now <i class="fal fa-long-arrow-right"></i></a>
+                                                <a href="<?php echo base_url(); ?>shop" class="axil-btn">Shop Now <i class="fal fa-long-arrow-right"></i></a>
                                             </div>
                                         </div>
                                         <div class="main-slider-thumb">
@@ -43,7 +43,7 @@
                                             <span class="subtitle"><i class="fal fa-watch"></i> Smartwatch</span>
                                             <h1 class="title">Delux Brand Watch</h1>
                                             <div class="shop-btn">
-                                                <a href="shop.html" class="axil-btn">Shop Now <i class="fal fa-long-arrow-right"></i></a>
+                                                <a href="<?php echo base_url(); ?>shop" class="axil-btn">Shop Now <i class="fal fa-long-arrow-right"></i></a>
                                             </div>
                                         </div>
                                         <div class="main-slider-thumb">
@@ -55,7 +55,7 @@
                                             <span class="subtitle"><i class="fal fa-watch"></i> Smartwatch</span>
                                             <h1 class="title">Bloosom Smat Watch</h1>
                                             <div class="shop-btn">
-                                                <a href="shop.html" class="axil-btn">Shop Now <i class="fal fa-long-arrow-right"></i></a>
+                                                <a href="<?php echo base_url(); ?>shop" class="axil-btn">Shop Now <i class="fal fa-long-arrow-right"></i></a>
                                             </div>
                                         </div>
                                         <div class="main-slider-thumb">
@@ -68,12 +68,12 @@
                         <div class="col-lg-3">
                             <div class="slider-product-box">
                                 <div class="product-thumb">
-                                    <a href="single-product.html">
+                                    <a href="#">
                                         <img src="<?php echo base_url(); ?>application_res/images/product/product-41.png" alt="Product">
                                     </a>
                                 </div>
-                                <h6 class="title"><a href="single-product.html">Yantiti Leather Bags</a></h6>
-                                <span class="price">$29.99</span>
+                                <h6 class="title"><a href="#">Yantiti Leather Bags</a></h6>
+                                <span class="price">Rs.2,500</span>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                             <div class="col-xl-3 col-lg-4 col-sm-6">
                                 <div class="axil-product product-style-one has-color-pick mt--40">
                                     <div class="thumbnail">
-                                        <a href="single-product.html">
+                                        <a href="<?php echo base_url(); ?>pages/productDetails/<?php echo $product->id; ?>">
                                             <img src="<?php echo base_url().$product->cover_image; ?>" alt="Product Images">
                                         </a>
                                         <?php if($product->discount != 0) { ?>
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="product-content">
                                         <div class="inner">
-                                            <h5 class="title"><a href="single-product.html"><?php echo $product->name; ?></a></h5>
+                                            <h5 class="title"><a href="<?php echo base_url(); ?>pages/productDetails/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></h5>
                                             <div class="product-price-variant">
                                                 <span class="price current-price">Rs.<?php
                                                 echo $product->price-($product->price*($product->discount/100)); 
@@ -134,7 +134,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                <a href="shop.html" class="axil-btn btn-bg-lighter btn-load-more">View All Products</a>
+                <a href="<?php echo base_url(); ?>shop" class="axil-btn btn-bg-lighter btn-load-more">View All Products</a>
             </div>
         </div>
 
@@ -181,7 +181,7 @@
         <div class="row">
             <div class="col-lg-6 mb--30">
                 <div class="single-poster">
-                    <a href="shop.html">
+                    <a href="<?php echo base_url(); ?>shop">
                         <img src="<?php echo base_url(); ?>application_res/images/product/poster/poster-01.png" alt="eTrade promotion poster">
                         <div class="poster-content">
                             <div class="inner">

@@ -51,7 +51,7 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6">
                         <div class="axil-product product-style-one has-color-pick mt--40">
                             <div class="thumbnail">
-                                <a href="single-product.html">
+                                <a href="<?php echo base_url(); ?>pages/productDetails/<?php echo $product->id; ?>">
                                     <img src="<?php echo base_url().$product->cover_image; ?>" alt="Product Images">
                                 </a>
                                 <?php if($product->discount != 0) { ?>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="product-content">
                                 <div class="inner">
-                                    <h5 class="title"><a href="single-product.html"><?php echo $product->name; ?></a></h5>
+                                    <h5 class="title"><a href="<?php echo base_url(); ?>pages/productDetails/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></h5>
                                     <div class="product-price-variant">
                                         <span class="price current-price">Rs.<?php
                                         echo $product->price-($product->price*($product->discount/100)); 

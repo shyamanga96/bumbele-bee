@@ -23,9 +23,12 @@ class Pages extends CI_Controller {
 		$this->load->view('shop',$data);
 	}
 
-	public function productDetails()
+	public function productDetails($id)
 	{
-		$this->load->view('product_details');
+		$data['product'] = $this->Admin_model->getProductDetailsById($id);
+		$data['product_images'] = $this->Admin_model->getProductImagesById($id);
+
+		$this->load->view('product_details',$data);
 
 	}
 
@@ -73,6 +76,10 @@ class Pages extends CI_Controller {
 			);
 
 			$this->cart->insert($data);
+		}
+
+		if ($url=="details") {
+			redirect('pages/productDetails/'.$id);
 		}
 
 		redirect($url);
