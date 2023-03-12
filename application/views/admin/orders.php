@@ -89,6 +89,7 @@
                               <th class="text-center">Customer Name</th>
                               <th class="text-center">Contact</th>
                               <th class="text-center">Total</th>
+                              <th class="text-center">Status</th>
                               <th class="text-center">Date</th>
                               <th class="text-center" width="13%">Action</th>
                             </tr>
@@ -100,6 +101,17 @@
                                 <td><?php echo $order->customer->f_name;  ?> <?php echo $order->customer->l_name;  ?></td>
                                 <td><?php echo $order->customer->contact_nu;  ?></td>
                                 <td>Rs.<?php echo number_format($order->total,2);  ?></td>
+                                <td class="text-center"><?php if ($order->status=='processing') {
+                                  echo '<span class="badge badge-primary">Processing</span>';
+                                }elseif ($order->status=='deliverd') {
+                                  echo '<span class="badge badge-secondary">Deliverd</span>';
+                                }elseif ($order->status=='on_hold') {
+                                  echo '<span class="badge badge-warning">On Hold</span>';
+                                }elseif ($order->status=='completed') {
+                                  echo '<span class="badge badge-success">Completed</span>';
+                                }elseif ($order->status=='refunded') {
+                                  echo '<span class="badge badge-light">Refunded</span>';
+                                } ?></td>
                                 <td><?php echo date_format(date_create($order->d_date),"Y-m-d");  ?></td>
                                 <td style="padding-left: 1.5%;"><a href="<?php echo base_url(); ?>admin/orderDetails/<?php echo $order->id;  ?>" class="btn btn-primary" target="_blank">Detail</a>&nbsp;&nbsp;
 
