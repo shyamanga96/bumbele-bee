@@ -108,6 +108,17 @@ public function getOrderDetailsById($id)
   return $query->row();
 }
 
+public function getItemsByOrderId($id)
+{
+ $this->db->select('order_items.*, products.*');
+ $this->db->from('order_items');
+ $this->db->join('products', 'order_items.item_id=products.id', 'left');
+ $this->db->where('order_id', $id);
+ $query = $this->db->get();
+
+ return $query->result();
+}
+
 
 
 

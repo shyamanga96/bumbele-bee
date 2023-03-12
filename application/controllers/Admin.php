@@ -170,7 +170,8 @@ class Admin extends CI_Controller {
 
 		$dataset['dataset'] = $data;
 
-		// print_r($data);die();
+		$dataset['order_items'] = $this->Admin_model->getItemsByOrderId($id);
+
 		$this->load->view('admin/order_details',$dataset);
 	}
 

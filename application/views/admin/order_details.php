@@ -146,37 +146,65 @@
                       <p style="font-size: 15px;"><?php echo $dataset->notes; ?></p>
                     </div>
                   </div>
-                  <hr>
-                  <h5 style="padding-bottom: 10px;">Order Management</h5>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputEmail4">Admin Note</label>
-                      <textarea class="form-control" id="note_admin"></textarea>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">Status</label>
-                      <select class="form-control" id="o_status">
-                        <option value="processing">Processing</option>
-                        <option value="deliverd">Deliverd</option>
-                        <option value="on_hold">On hold</option>
-                        <option value="completed">Completed</option>
-                        <option value="refunded">Refunded</option>
-                      </select>
-                    </div>
-                    <div class="col-12" style="display: flex;justify-content: end;">
-                     <a href="http://localhost/bumble-bee/admin/orderDetails/4" class="btn btn-primary" target="_blank">Detail</a>
-                   </div>
-                   
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
+                  <h5 style="padding-bottom: 10px;">Order Items</h5>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-gallery">
+                      <thead>
+                        <tr>
+                          <th class="text-center">Image</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Unit Price</th>
+                          <th class="text-center">Qty</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php foreach ($order_items as $data) { ?>
+                          <tr>
+                            <td class="text-center"><img alt="image" src="<?php echo base_url().$data->cover_image;  ?>" height="80"></td>
+                            <td class="text-center"><?php echo $data->name;  ?></td>
+                            <td class="text-center">
+                             <?php echo number_format($data->price,2); ?>
+                           </td>
+                           <td class="text-center"><?php echo $data->qty;  ?></td>
+                         </tr>
 
-       </div>
-     </section>
-   </div>
-   <footer class="main-footer">
+                       <?php }?>
+                     </tbody>
+                   </table>
+                 </div>
+                 <hr>
+                 <h5 style="padding-bottom: 10px;">Order Management</h5>
+                 <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Admin Note</label>
+                    <textarea class="form-control" id="note_admin"></textarea>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Status</label>
+                    <select class="form-control" id="o_status">
+                      <option value="processing">Processing</option>
+                      <option value="deliverd">Deliverd</option>
+                      <option value="on_hold">On hold</option>
+                      <option value="completed">Completed</option>
+                      <option value="refunded">Refunded</option>
+                    </select>
+                  </div>
+                  <div class="col-12" style="display: flex;justify-content: end;">
+                    <a href="javascript:void" class="btn btn-primary" >Detail</a>
+                  </div>
+                  <hr>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
     <div class="footer-left">
       Copyright &copy; 2021 <div class="bullet"></div> Design & Developed By @shyamanga96
     </div>
@@ -219,15 +247,6 @@
 
 </script>
 
-
-<script type="text/javascript">
- function deleteItem() {
-  if (confirm("Are you sure?")) {
-    return true;
-  }
-  return false;
-}
-</script>
 
 <?php if($this->session->flashdata('productSuccess')){ ?>
   <script type="text/javascript">
