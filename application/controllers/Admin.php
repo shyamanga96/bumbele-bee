@@ -45,6 +45,7 @@ class Admin extends CI_Controller {
 			"discount" => $_POST['discount'],
 			"description" => $_POST['description'],
 			"a_date" => date("Y/m/d"),
+			"category_id"=>$_POST['category_id']
 		];
 
 		// upload Cover Image
@@ -90,6 +91,7 @@ class Admin extends CI_Controller {
 	{
 		$data['dataset'] = $this->Admin_model->getProductDetailsById($id);
 		$data['images'] = $this->Admin_model->getProductImagesById($id);
+		$data['categories'] = $this->Admin_model->getAllCategories();
 
 		// print_r($data);die();
 		$this->load->view('admin/edit_product',$data);
@@ -103,6 +105,7 @@ class Admin extends CI_Controller {
 			"discount" => $_POST['discount'],
 			"description" => $_POST['description'],
 			"a_date" => date("Y/m/d"),
+			"category_id"=>$_POST['category_id']
 		];
 
 		// upload Cover Image

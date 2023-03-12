@@ -45,8 +45,14 @@ class Admin_model extends CI_Model {
 
  public function getProductsBack()
  {
-  $this->db->order_by('id','DESC');
+
   $query = $this->db->get('products');
+
+  $this->db->select('products.*, categories.name as category_name');
+  $this->db->from('products');
+  $this->db->join('categories', 'products.category_id=categories.id', 'left');
+  $this->db->order_by('id','DESC');
+  $query = $this->db->get();
 
   return $query->result();
 }
