@@ -162,6 +162,19 @@ class Admin extends CI_Controller {
 	}
 
 
+	public function orderDetails($id)
+	{
+
+		$data = $this->Admin_model->getOrderDetailsById($id);
+		$data->customerDetails = $this->Customer_model->getCustomerDetailsById($data->customer_id);
+
+		$dataset['dataset'] = $data;
+
+		// print_r($data);die();
+		$this->load->view('admin/order_details',$dataset);
+	}
+
+
 
 
 

@@ -6,7 +6,6 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Edit Product</title>
   <?php include 'include/navigation.php'; ?> 
-  <link rel='shortcut icon' type='image/x-icon' href='<?php echo base_url(); ?>application_res/admin/img/favicon.ico' />
 </head>
 
 <body>

@@ -101,7 +101,7 @@
                                 <td><?php echo $order->customer->contact_nu;  ?></td>
                                 <td>Rs.<?php echo number_format($order->total,2);  ?></td>
                                 <td><?php echo date_format(date_create($order->d_date),"Y-m-d");  ?></td>
-                                <td style="padding-left: 1.5%;"><a href="#" class="btn btn-primary" target="_blank">Detail</a>&nbsp;&nbsp;
+                                <td style="padding-left: 1.5%;"><a href="<?php echo base_url(); ?>admin/orderDetails/<?php echo $order->id;  ?>" class="btn btn-primary" target="_blank">Detail</a>&nbsp;&nbsp;
 
                                   <a href="#" class="btn btn-icon btn-danger" onclick="return deleteItem()"><i class="fas fa-trash-alt"></i></a>
 

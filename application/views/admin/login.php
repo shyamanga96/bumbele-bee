@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Blue Ember Group Admin Login</title>
+  <title>Admin Login</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>application_res/admin/css/app.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>application_res/admin/bundles/bootstrap-social/bootstrap-social.css">
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              Copyright &copy; <?php echo date('Y'); ?> Blue Ember LLC, All Rights Reserved.
+              Copyright &copy; <?php echo date('Y'); ?> BumbleBee, All Rights Reserved.
             </div>
           </div>
         </div>

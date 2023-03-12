@@ -99,6 +99,14 @@ public function getAllOrders()
   return $query->result();
 }
 
+public function getOrderDetailsById($id)
+{
+
+  $this->db->where('id', $id);
+  $query = $this->db->get('orders');
+
+  return $query->row();
+}
 
 
 
