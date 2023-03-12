@@ -125,6 +125,27 @@ public function updateOrderDetailsById($id,$data)
   $this->db->update('orders', $data);
 }
 
+public function getAllCategories()
+{
+  $this->db->order_by('id','DESC');
+  $query = $this->db->get('categories');
+
+  return $query->result();
+}
+
+public function addCategoryData($data)
+{
+ $this->db->insert('categories', $data);
+
+ return $this->db->insert_id();
+}
+
+public function editCategoryDataById($id,$data)
+{
+  $this->db->where('id', $id);
+  $this->db->update('categories', $data);
+}
+
 
 
 

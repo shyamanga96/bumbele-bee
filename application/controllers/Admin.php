@@ -31,6 +31,7 @@ class Admin extends CI_Controller {
 	public function products()
 	{
 		$data['products'] = $this->Admin_model->getProductsBack();
+		$data['categories'] = $this->Admin_model->getAllCategories();
 
 		$this->load->view('admin/add_product',$data);
 	}
@@ -190,6 +191,58 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('orderSuccess', 'Order Details Updated Successfully!');
 
 		redirect('admin/orderDetails/'.$id);
+	}
+
+
+	public function productCategories()
+	{
+		$data['categories'] = $this->Admin_model->getAllCategories();
+		$this->load->view('admin/categories',$data);
+	}
+
+	public function addCategoryData()
+	{
+		$random1 = substr(number_format(time() * rand(),0,'',''),0,10); 
+		$target_dir = "uploads/";
+		$image = $random1.basename($_FILES["image"]["name"]);
+		$target_file = $target_dir . $image;
+		$moved = move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+
+		$data=[
+			"name"=>$_POST['name'],
+			"image"=>$target_file
+		];
+
+		$this->Admin_model->addCategoryData($data);
+
+		$this->session->set_flashdata('categorySuccess', 'Category Added Successfully!');
+
+		redirect('admin/productCategories/');
+	}
+
+	public function editCategory()
+	{
+
+		$data=[
+			"name"=>$_POST['e_name']
+		];
+
+		if ($_FILES["e_image"]["tmp_name"]!="") {
+
+			$random1 = substr(number_format(time() * rand(),0,'',''),0,10); 
+			$target_dir = "uploads/";
+			$image = $random1.basename($_FILES["e_image"]["name"]);
+			$target_file = $target_dir . $image;
+			$moved = move_uploaded_file($_FILES["e_image"]["tmp_name"], $target_file);
+
+			$data['image'] = $target_file;
+		}
+
+		$this->Admin_model->editCategoryDataById($_POST['c_id'],$data);
+
+		$this->session->set_flashdata('categorySuccess', 'Category Edited Successfully!');
+
+		redirect('admin/productCategories');
 	}
 
 
