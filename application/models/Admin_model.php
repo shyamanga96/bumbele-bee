@@ -119,6 +119,12 @@ public function getItemsByOrderId($id)
  return $query->result();
 }
 
+public function updateOrderDetailsById($id,$data)
+{
+  $this->db->where('id', $id);
+  $this->db->update('orders', $data);
+}
+
 
 
 

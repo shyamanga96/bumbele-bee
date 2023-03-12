@@ -176,6 +176,23 @@ class Admin extends CI_Controller {
 	}
 
 
+	public function updateOrderStatusById($id)
+	{
+		$data= [
+			"note_admin"=>$_POST['note_admin'],
+			"status"=>$_POST['o_status'],
+		];
+
+		// print_r($data);die();
+
+		$this->Admin_model->updateOrderDetailsById($id,$data);
+
+		$this->session->set_flashdata('orderSuccess', 'Order Details Updated Successfully!');
+
+		redirect('admin/orderDetails/'.$id);
+	}
+
+
 
 
 

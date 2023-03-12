@@ -174,28 +174,40 @@
                  </div>
                  <hr>
                  <h5 style="padding-bottom: 10px;">Order Management</h5>
-                 <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Admin Note</label>
-                    <textarea class="form-control" id="note_admin"></textarea>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Status</label>
-                    <select class="form-control" id="o_status">
-                      <option value="processing">Processing</option>
-                      <option value="deliverd">Deliverd</option>
-                      <option value="on_hold">On hold</option>
-                      <option value="completed">Completed</option>
-                      <option value="refunded">Refunded</option>
-                    </select>
-                  </div>
-                  <div class="col-12" style="display: flex;justify-content: end;">
-                    <a href="javascript:void" class="btn btn-primary" >Detail</a>
-                  </div>
-                  <hr>
+                 <form action="<?php echo base_url(); ?>admin/updateOrderStatusById/<?php echo $dataset->id; ?>" method="POST" >
+                   <div class="form-row">
 
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4">Admin Note</label>
+                      <textarea class="form-control" id="note_admin" name="note_admin"><?php echo $dataset->note_admin; ?></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Status</label>
+                      <select class="form-control" name="o_status" id="o_status">
+                        <option value="processing" <?php if ($dataset->status=='processing') {
+                          echo "selected";
+                        } ?>>Processing</option>
+                        <option value="deliverd" <?php if ($dataset->status=='deliverd') {
+                          echo "selected";
+                        } ?>>Deliverd</option>
+                        <option value="on_hold" <?php if ($dataset->status=='on_hold') {
+                          echo "selected";
+                        } ?>>On hold</option>
+                        <option value="completed" <?php if ($dataset->status=='completed') {
+                          echo "selected";
+                        } ?>>Completed</option>
+                        <option value="refunded" <?php if ($dataset->status=='refunded') {
+                          echo "selected";
+                        } ?>>Refunded</option>
+                      </select>
+                    </div>
+                    <div class="col-12" style="display: flex;justify-content: end;">
+                      <button type="submit" class="btn btn-primary" >Update</button>
 
-                </div>
+                    </div>
+
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -248,19 +260,19 @@
 </script>
 
 
-<?php if($this->session->flashdata('productSuccess')){ ?>
+<?php if($this->session->flashdata('orderSuccess')){ ?>
   <script type="text/javascript">
     iziToast.success({
-      message: '<?php echo $this->session->flashdata('productSuccess'); ?>',
+      message: '<?php echo $this->session->flashdata('orderSuccess'); ?>',
       position: 'topRight'
     });
   </script>
 <?php } ?>
 
-<?php if($this->session->flashdata('productError')){ ?>
+<?php if($this->session->flashdata('orderError')){ ?>
   <script type="text/javascript">
     iziToast.error({
-      message: '<?php echo $this->session->flashdata('productError'); ?>',
+      message: '<?php echo $this->session->flashdata('orderError'); ?>',
       position: 'topRight'
     });
   </script>
