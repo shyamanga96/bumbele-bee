@@ -8,10 +8,13 @@ class Admin_model extends CI_Model {
   } 
 
   /* SI: FROUNTEND */
-  public function getProducts($start,$limit)
+  public function getProducts($start,$limit,$c_id)
   {
     $this->db->order_by('id','DESC');
     $this->db->limit($limit, $start);
+    if ($c_id!='all') {
+      $this->db->where('category_id', $c_id);
+    }
     $query = $this->db->get('products');
 
     return $query->result();

@@ -17,10 +17,10 @@
 
 <body class="sticky-header">
 
- <?php include 'include/header.php'; ?>
+   <?php include 'include/header.php'; ?>
 
 
- <main class="main-wrapper">
+   <main class="main-wrapper">
     <!-- Start Shop Area  -->
     <div class="axil-shop-area axil-section-gap bg-color-white">
         <div class="container">
@@ -33,11 +33,13 @@
                             <div class="col-lg-3">
                                 <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
                                     <!-- Start Single Select  -->
-                                    <select class="single-select">
-                                        <option>Sort by Latest</option>
-                                        <option>Sort by Name</option>
-                                        <option>Sort by Price</option>
-                                        <option>Sort by Viewed</option>
+                                    <select class="single-select" id="category" onchange="changeCategory()">
+                                        <option value="all">Categories</option>
+                                        <?php foreach ($categories as $key => $category) { ?>
+                                            <option value="<?php echo $category->id; ?>" <?php if($this->uri->segment(2)==$category->id){
+                                                echo "selected";
+                                            } ?>><?php echo $category->name; ?></option>
+                                        <?php } ?>
                                     </select>
                                     <!-- End Single Select  -->
                                 </div>
@@ -138,8 +140,15 @@
         <!-- Main JS -->
         <script src="<?php echo base_url(); ?>application_res/js/main.js"></script>
 
-    </body>
+        <script type="text/javascript">
+            function changeCategory() {
+             let c_id = $('#category').val();
+             window.location.href = "<?php echo base_url(); ?>shop/"+c_id;
+         }
+     </script>
+
+ </body>
 
 
-    <!-- Mirrored from new.axilthemes.com/demo/template/etrade/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Mar 2023 16:50:57 GMT -->
-    </html>
+ <!-- Mirrored from new.axilthemes.com/demo/template/etrade/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Mar 2023 16:50:57 GMT -->
+ </html>

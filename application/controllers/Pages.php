@@ -12,13 +12,20 @@ class Pages extends CI_Controller {
 
 	public function index()
 	{
-		$data['products'] = $this->Admin_model->getProducts(0,8);
+		$data['products'] = $this->Admin_model->getProducts(0,8,'all');
+		$data['categories'] = $this->Admin_model->getAllCategories();
 		$this->load->view('index',$data);
 	}
 
-	public function shop()
+	public function shop($c_id='all')
 	{
-		$data['products'] = $this->Admin_model->getProducts(0,100);
+
+		if ($c_id=="") {
+			$c_id='all';
+		}
+
+		$data['products'] = $this->Admin_model->getProducts(0,100,$c_id);
+		$data['categories'] = $this->Admin_model->getAllCategories();
 		// print_r($data);die();
 		$this->load->view('shop',$data);
 	}

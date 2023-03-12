@@ -82,10 +82,35 @@
         </div>
         <!-- End Slider Area -->
 
+        <!-- Start Categorie Area  -->
+        <div class="axil-categorie-area bg-color-white axil-section-gapcommon">
+            <div class="container">
+                <div class="section-title-wrapper">
+                    <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i> Categories</span>
+                    <h2 class="title">Browse by Category</h2>
+                </div>
+                <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
 
+                    <?php foreach ($categories as $key => $category) { ?>
+                        <div class="slick-single-layout">
+                            <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500">
+                                <a href="<?php echo base_url(); ?>shop/<?php echo $category->id; ?>">
+                                    <img class="img-fluid" src="<?php echo base_url().$category->image; ?>" alt="product categorie">
+                                    <h6 class="cat-title"><?php echo $category->name; ?></h6>
+                                </a>
+                            </div>
+                            <!-- End .categrie-product -->
+                        </div>
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Categorie Area  -->
 
         <!-- Start Expolre Product Area  -->
-        <div class="axil-product-area bg-color-white axil-section-gap">
+        <div class="axil-product-area bg-color-white">
             <div class="container">
                 <div class="section-title-wrapper">
                     <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> Our Products</span>

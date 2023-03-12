@@ -187,8 +187,6 @@ class Admin extends CI_Controller {
 			"status"=>$_POST['o_status'],
 		];
 
-		// print_r($data);die();
-
 		$this->Admin_model->updateOrderDetailsById($id,$data);
 
 		$this->session->set_flashdata('orderSuccess', 'Order Details Updated Successfully!');
