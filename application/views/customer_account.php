@@ -49,7 +49,7 @@
 
                       <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
                         <div class="axil-dashboard-overview">
-                            <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a href="<?php echo base_url(); ?>user/customerLogout">Log Out</a>)</div>
+                            <div class="welcome-text">Hello <?php echo $customer->f_name; ?> <?php echo $customer->l_name; ?> (not <span><?php echo $customer->f_name; ?>?</span> <a href="<?php echo base_url(); ?>user/customerLogout">Log Out</a>)</div>
                             <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
                         </div>
                     </div>
@@ -63,7 +63,8 @@
                                             <th scope="col">Date</th>
                                             <th scope="col">Type</th>
                                             <th scope="col">Total</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col">Status</th>
+                                            <!-- <th scope="col">Actions</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,7 +74,18 @@
                                                 <td><?php echo date_format(date_create($order->d_date),"Y-m-d") ?></td>
                                                 <td><?php echo $order->type ?></td>
                                                 <td>Rs.<?php echo number_format($order->total) ?></td>
-                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                                <td><?php  if ($order->status=='processing') {
+                                                    echo "Processing";
+                                                }elseif ($order->status=='deliverd') {
+                                                    echo "Deliverd";
+                                                }elseif ($order->status=='on_hold') {
+                                                    echo "On Hold";
+                                                }elseif ($order->status=='completed') {
+                                                    echo "Completed";
+                                                }elseif ($order->status=='refunded') {
+                                                    echo "Refunded";
+                                                } ?></td>
+                                                <!-- <td><a href="#" class="axil-btn view-btn">View</a></td> -->
                                             </tr>
                                         <?php } ?>
 
