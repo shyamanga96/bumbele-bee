@@ -25,6 +25,13 @@ class Admin extends CI_Controller {
 		}
 
 		$data['orders'] = $orders;
+
+		$data['total_sales'] = $this->Admin_model->getOrderCount();
+		$data['total_income'] = $this->Admin_model->getOrdersTotalSum();
+		$data['total_customers'] = $this->Admin_model->totalCustomersCount();
+		$data['total_products'] = $this->Admin_model->totalProductsCount();
+
+		// print_r($data);die();
 		$this->load->view('admin/orders',$data);
 	}
 

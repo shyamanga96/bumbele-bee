@@ -156,32 +156,29 @@ public function editCategoryDataById($id,$data)
 }
 
 
-
-
-
-
-
-
-public function getGalleryItemsBack()
+public function getOrderCount()
 {
-  $this->db->order_by('id','DESC');
-  $query = $this->db->get('gallery');
-
-  return $query->result();
+  $query = $this->db->get('orders');
+  return $query->num_rows();
 }
 
-
-public function addGalleryImagesData($data)
+public function getOrdersTotalSum()
 {
-  $this->db->insert('gallery', $data);
-
-  return $this->db->insert_id();
+  $this->db->select_sum('total');
+  $query = $this->db->get('orders');
+  return $query->row();
 }
 
-public function deleteGalleryItemDetailsById($id)
+public function totalCustomersCount()
 {
-  $this->db->where('id', $id);
-  $this->db->delete('gallery');
+  $query = $this->db->get('customers');
+  return $query->num_rows();
+}
+
+public function totalProductsCount()
+{
+  $query = $this->db->get('products');
+  return $query->num_rows();
 }
 
 public function passwordResetData($data)
