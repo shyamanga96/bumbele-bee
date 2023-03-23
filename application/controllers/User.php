@@ -84,7 +84,9 @@ public function customerRegisterDetails()
 
   $cus = $this->Customer_model->getCustomerDetailsByEmail($_POST['email']);
 
-  if (count($cus) > 0) {
+
+
+  if (count($cus) <= 0) {
     $data = [
 
       'f_name'=>$_POST['f_name'],
