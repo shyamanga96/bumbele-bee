@@ -127,7 +127,6 @@ class Pages extends CI_Controller {
 
 	public function placeOrder()
 	{
-		// print_r($this->cart->contents());die();
 		$user_data = $this->session->userdata();
 
 		$cus_data = [
@@ -142,6 +141,8 @@ class Pages extends CI_Controller {
 		];
 
 		$this->Customer_model->updateCustomerDetailsById($user_data['customerId'],$cus_data);
+
+
 
 		$order_data=[
 			'customer_id'=>$user_data['customerId'],
@@ -171,6 +172,8 @@ class Pages extends CI_Controller {
 
 		$order_id = $this->Customer_model->addOrderData($order_data);
 
+		$order_items = [];
+
 		foreach ($this->cart->contents() as $item) {
 
 			$order_item_data = [
@@ -183,6 +186,17 @@ class Pages extends CI_Controller {
 
 			$this->Customer_model->addOrderItemsByOrderId($order_item_data);
 
+			$product = $this->Admin_model->getProductDetailsById($item['id']);
+
+			$o_item = [
+				'name' => $product->name,
+				'qty'=>$item['qty'],
+				'image' => $product->cover_image,
+				'price' => $product->price-($product->price*($product->discount/100)),
+			];
+
+			array_push($order_items, $o_item);
+
 			$data = array(
 				'rowid' => $item['rowid'],
 				'qty'   => 0
@@ -190,8 +204,60 @@ class Pages extends CI_Controller {
 
 			$this->cart->update($data);
 		}
-		$this->session->set_flashdata('order_placed', '#'.$order_id.' Order Placed Successfully! Place check it on your "Orders" tab.');
-		redirect('customer/account');
 
-	}
+		$emaildata['customer_data'] = $cus_data;
+		$emaildata['order_data'] = $order_data;
+		$emaildata['order_items'] = $order_items;
+		$emaildata['order_id'] = $order_id;
+
+		$message = $this->load->view('email', $emaildata, true);
+
+		// print_r($message);die();
+
+		
+		// $message = '<h1>test</h1>';
+
+		$this->load->library('email');
+
+		$this->email->from('bumblebee@codexivelk.com', 'BumbleBee');
+		$this->email->to($_POST['email']);
+
+		$this->email->subject('BumbleBee Receipt');
+		$this->email->message($message);
+		$this->email->set_mailtype("html");
+
+		if($this->email->send()) {
+			echo "send";
+		} else {
+			echo "fail";
+		}
+
+
+		$user = 94766718614;
+		$password = 7758;
+		$text = urlencode("Your order #".$order_id." is confirmed. Total order value: Rs.".number_format($order_data['total']).". Delivery within 4 working days. Thank You. BumbleBee.");
+
+		$to = "94".$_POST['contact_nu'];
+
+		$api_url ="http://www.textit.biz/sendmsg/";
+		$curl = curl_init($api_url.'?id='.$user.'&pw='.$password.'&to='.$to.'&text='.$text);
+
+		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+			'Content-Type: application/json',
+			'Accept: application/json'
+		)
+	);
+
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Make it so the data coming back is put into a string
+
+	// Send the request
+	$response = curl_exec($curl);
+	$res= explode(":",$response);
+
+	
+	$this->session->set_flashdata('order_placed', '#'.$order_id.' Order Placed Successfully! Place check it on your "Orders" tab.');
+	redirect('customer/account');
+
+}
 }

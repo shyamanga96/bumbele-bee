@@ -179,10 +179,10 @@
                     </div>
                     <div class="single-payment">
                         <div class="input-group">
-                            <input type="radio" id="radio4" name="payment" value="installment" <?php if ($age === 0) {
+                            <input type="radio" id="radio4" name="payment" value="installment" <?php if ($age === 0 || $this->cart->total() < 15000) {
                                 echo "disabled";
                             }  ?>>
-                            <label for="radio4" style="<?php if ($age === 0) {
+                            <label for="radio4" style="<?php if ($age === 0 || $this->cart->total() < 15000) {
                                 echo "color: #909095 !important;";
                             }  ?>">Buy Now Pay Later (Installment : Rs.<?php echo number_format($this->cart->total()/3); ?>)</label>
                         </div>
