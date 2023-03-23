@@ -18,6 +18,14 @@ class Customer_model extends CI_Model {
     return $query->result();         
   } 
 
+  public function getCustomerDetailsByEmail($email)
+  {
+    $this->db->where('email', $email);
+    $query = $this->db->get('customers');
+
+    return $query->result();   
+  }
+
   public function addCustomerDetails($data)
   {
    $this->db->insert('customers', $data);

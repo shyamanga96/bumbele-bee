@@ -57,8 +57,8 @@
                     <a href="<?php echo base_url(); ?>user/customerLogout" class="axil-btn btn-bg-secondary text-center">Logout</a>
                   <?php }else{ ?>
                     <a href="<?php echo base_url(); ?>sign-in" class="axil-btn btn-bg-primary text-center">Login</a>
+                    <div class="reg-footer text-center" style="padding-top: 10px;">No account yet? <a href="<?php echo base_url(); ?>sign-up" class="btn-link">REGISTER HERE.</a></div>
                   <?php } ?>
-                  <div class="reg-footer text-center" style="padding-top: 10px;">No account yet? <a href="<?php echo base_url(); ?>sign-up" class="btn-link">REGISTER HERE.</a></div>
                 </div>
               </li>
               <li class="axil-mobile-toggle">
