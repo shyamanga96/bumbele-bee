@@ -6,7 +6,6 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Edit Product</title>
   <?php include 'include/navigation.php'; ?> 
-  <link rel='shortcut icon' type='image/x-icon' href='<?php echo base_url(); ?>application_res/admin/img/favicon.ico' />
 </head>
 
 <body>
@@ -43,6 +42,16 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label>Category</label>
+                      <select class="form-control" name="category_id" id="category_id">
+                        <?php foreach ($categories as $key => $data) { ?>
+                          <option value="<?php echo $data->id; ?>" <?php if ($data->id == $dataset->category_id) {
+                            echo "selected";
+                          } ?>><?php echo $data->name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label>Description</label>
                       <textarea name="description" id="description" class="form-control" required><?php echo $dataset->description;?></textarea>
                     </div>
@@ -58,7 +67,7 @@
 
                   </div>
                   <div class="card-footer text-right">
-                    <button class="btn btn-primary mr-1" type="submit">Add Images</button>
+                    <button class="btn btn-primary mr-1" type="submit">Update Product</button>
                   </div>
                 </form>
               </div>

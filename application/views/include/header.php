@@ -6,10 +6,10 @@
         <div class="container">
           <div class="header-navbar">
             <div class="header-brand">
-              <a href="index-2.html" class="logo logo-dark">
+              <a href="<?php echo base_url(); ?>" class="logo logo-dark">
                 <img src="<?php echo base_url(); ?>application_res/images/logo/logo.png" alt="Site Logo">
               </a>
-              <a href="index-2.html" class="logo logo-light">
+              <a href="<?php echo base_url(); ?>" class="logo logo-light">
                 <img src="<?php echo base_url(); ?>application_res/images/logo/logo-light.png" alt="Site Logo">
               </a>
             </div>
@@ -18,7 +18,7 @@
               <nav class="mainmenu-nav">
                 <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                 <div class="mobile-nav-brand">
-                  <a href="index-2.html" class="logo">
+                  <a href="<?php echo base_url(); ?>" class="logo">
                     <img src="<?php echo base_url(); ?>application_res/images/logo/logo.png" alt="Site Logo">
                   </a>
                 </div>
@@ -35,7 +35,7 @@
               <ul class="action-list">
                 <li class="shopping-cart">
                   <a href="#" class="cart-dropdown-btn">
-                    <span class="cart-count">3</span>
+                    <span class="cart-count"><?php echo count($this->cart->contents()); ?></span>
                     <i class="flaticon-shopping-cart"></i>
                   </a>
                 </li>
@@ -57,8 +57,8 @@
                     <a href="<?php echo base_url(); ?>user/customerLogout" class="axil-btn btn-bg-secondary text-center">Logout</a>
                   <?php }else{ ?>
                     <a href="<?php echo base_url(); ?>sign-in" class="axil-btn btn-bg-primary text-center">Login</a>
+                    <div class="reg-footer text-center" style="padding-top: 10px;">No account yet? <a href="<?php echo base_url(); ?>sign-up" class="btn-link">REGISTER HERE.</a></div>
                   <?php } ?>
-                  <div class="reg-footer text-center" style="padding-top: 10px;">No account yet? <a href="<?php echo base_url(); ?>sign-up" class="btn-link">REGISTER HERE.</a></div>
                 </div>
               </li>
               <li class="axil-mobile-toggle">

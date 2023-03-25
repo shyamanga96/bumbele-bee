@@ -43,38 +43,43 @@
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
                         <h3 class="title">I'm New Here</h3>
-                        <p class="b2 mb--55">Enter your detail below</p>
-                        <form class="singin-form" method="POST" action="<?php echo base_url(); ?>user/customerRegisterDetails" novalidate="">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" class="form-control" name="f_name" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" name="l_name" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Date of Birth</label>
-                                <input type="date" class="form-control" name="birthday" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="password" required>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="axil-btn btn-bg-primary submit-btn">Create Account</button>
-                            </div>
-                        </form>
-                    </div>
+                        <?php if($this->session->flashdata('reg_error')){ ?>
+                            <div class="alert alert-danger" role="alert">
+                              The email you entered is already registerd!
+                          </div>
+                      <?php } ?>
+                      <p class="b2 mb--55">Enter your detail below</p>
+                      <form class="singin-form" method="POST" action="<?php echo base_url(); ?>user/customerRegisterDetails" novalidate="">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="f_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="l_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" name="birthday" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="axil-btn btn-bg-primary submit-btn">Create Account</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 
     <!-- JS
         ============================================ -->

@@ -6,7 +6,6 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Product</title>
   <?php include 'include/navigation.php'; ?> 
-  <link rel='shortcut icon' type='image/x-icon' href='<?php echo base_url(); ?>application_res/admin/img/favicon.ico' />
 </head>
 
 <body>
@@ -43,6 +42,15 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label>Category</label>
+                      <select class="form-control" name="category_id" id="category_id">
+                        <?php foreach ($categories as $key => $data) { ?>
+                          <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
                       <label>Description</label>
                       <textarea name="description" id="description" class="form-control" required></textarea>
                     </div>
@@ -57,7 +65,7 @@
 
                   </div>
                   <div class="card-footer text-right">
-                    <button class="btn btn-primary mr-1" type="submit">Add Images</button>
+                    <button class="btn btn-primary mr-1" type="submit">Add Product</button>
                   </div>
                 </form>
               </div>
@@ -74,6 +82,7 @@
                         <tr>
                           <th class="text-center">Image</th>
                           <th class="text-center">Name</th>
+                          <th class="text-center">Category</th>
                           <th class="text-center">Action</th>
                         </tr>
                       </thead>
@@ -82,6 +91,7 @@
                           <tr>
                             <td class="text-center"><img alt="image" src="<?php echo base_url().$data->cover_image;  ?>" height="80"></td>
                             <td class="text-center"><?php echo $data->name;  ?></td>
+                            <td class="text-center"><?php echo $data->category_name;  ?></td>
                             <td width="40%" class="text-center">
                               <a href="<?php echo base_url(); ?>admin/editProductDetailsById/<?php echo $data->id;  ?>" class="btn btn-primary" target="_blank">Detail</a>&nbsp;&nbsp;
                               <a href="<?php echo base_url(); ?>admin/deleteProductDetailsById/<?php echo $data->id;  ?>" class="btn btn-icon btn-danger" onclick="return deleteItem()"><i class="fas fa-trash-alt"></i></a></td>

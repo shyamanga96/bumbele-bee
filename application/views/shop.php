@@ -33,11 +33,13 @@
                             <div class="col-lg-3">
                                 <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
                                     <!-- Start Single Select  -->
-                                    <select class="single-select">
-                                        <option>Sort by Latest</option>
-                                        <option>Sort by Name</option>
-                                        <option>Sort by Price</option>
-                                        <option>Sort by Viewed</option>
+                                    <select class="single-select" id="category" onchange="changeCategory()">
+                                        <option value="all">Categories</option>
+                                        <?php foreach ($categories as $key => $category) { ?>
+                                            <option value="<?php echo $category->id; ?>" <?php if($this->uri->segment(2)==$category->id){
+                                                echo "selected";
+                                            } ?>><?php echo $category->name; ?></option>
+                                        <?php } ?>
                                     </select>
                                     <!-- End Single Select  -->
                                 </div>
@@ -51,7 +53,7 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6">
                         <div class="axil-product product-style-one has-color-pick mt--40">
                             <div class="thumbnail">
-                                <a href="single-product.html">
+                                <a href="<?php echo base_url(); ?>pages/productDetails/<?php echo $product->id; ?>">
                                     <img src="<?php echo base_url().$product->cover_image; ?>" alt="Product Images">
                                 </a>
                                 <?php if($product->discount != 0) { ?>
@@ -61,13 +63,13 @@
                                 <?php } ?>
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
-                                        <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                        <li class="select-option"><a href="<?php echo base_url(); ?>pages/addToCart/<?php echo $product->id; ?>/shop">Add to Cart</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="product-content">
                                 <div class="inner">
-                                    <h5 class="title"><a href="single-product.html"><?php echo $product->name; ?></a></h5>
+                                    <h5 class="title"><a href="<?php echo base_url(); ?>pages/productDetails/<?php echo $product->id; ?>"><?php echo $product->name; ?></a></h5>
                                     <div class="product-price-variant">
                                         <span class="price current-price">Rs.<?php
                                         echo $product->price-($product->price*($product->discount/100)); 
@@ -138,8 +140,15 @@
         <!-- Main JS -->
         <script src="<?php echo base_url(); ?>application_res/js/main.js"></script>
 
-    </body>
+        <script type="text/javascript">
+            function changeCategory() {
+             let c_id = $('#category').val();
+             window.location.href = "<?php echo base_url(); ?>shop/"+c_id;
+         }
+     </script>
+
+ </body>
 
 
-    <!-- Mirrored from new.axilthemes.com/demo/template/etrade/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Mar 2023 16:50:57 GMT -->
-    </html>
+ <!-- Mirrored from new.axilthemes.com/demo/template/etrade/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Mar 2023 16:50:57 GMT -->
+ </html>

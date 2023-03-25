@@ -39,7 +39,7 @@ public function logincheck(){
 
     if(count($user) > 0){    
      $user_data = array(
-      'username' => $username
+      'username' => $username,
     );
 
      $this->session->set_flashdata('welcome_back', ' '.$username);
@@ -81,23 +81,36 @@ public function customerRegister()
 
 public function customerRegisterDetails()
 {
-  $data = [
 
-    'f_name'=>$_POST['f_name'],
-    'l_name'=>$_POST['l_name'],
-    'birthday'=>$_POST['birthday'],
-    'email'=>$_POST['email'],
-    'password'=>md5($_POST['f_name']),
-  ];
+  $cus = $this->Customer_model->getCustomerDetailsByEmail($_POST['email']);
 
-  $this->Customer_model->addCustomerDetails($data);
 
-  $user_data = array(
-    'email' => $_POST['email']
-  );
 
-  $this->session->set_userdata($user_data);  
-  redirect('customer/account');  
+  if (count($cus) <= 0) {
+    $data = [
+
+      'f_name'=>$_POST['f_name'],
+      'l_name'=>$_POST['l_name'],
+      'birthday'=>$_POST['birthday'],
+      'email'=>$_POST['email'],
+      'password'=>md5($_POST['f_name']),
+    ];
+
+    $cus_id = $this->Customer_model->addCustomerDetails($data);
+
+    $user_data = array(
+      'email' => $_POST['email'],
+      'customerId'=>$cus_id
+    );
+
+    $this->session->set_userdata($user_data);  
+    redirect('customer/account');  
+  }else{
+    $this->session->set_flashdata('reg_error', 'The email you entered is already registerd!');
+    redirect('sign-up');
+  }
+
+
 
 }
 
@@ -117,7 +130,10 @@ public function customerLoginCheck()
 
   if(count($user) > 0){    
    $user_data = array(
-    'email' => $email
+    'email' => $email,
+    'customerId'=>$user[0]->id,
+    'username'=>$user[0]->f_name
+
   );
 
    $this->session->set_flashdata('welcome_back', ' '.$email);
